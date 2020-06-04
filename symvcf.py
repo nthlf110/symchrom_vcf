@@ -47,9 +47,10 @@ if __name__ == '__main__':
         	valid_pos.append(i[0]+' '+i[1])
     sym_vcf = []
     sym_vcf.append(orig_vcf[0])
-    for i in range(0, len(orig_vcf)):
-        if orig_vcf[i][0]+' '+orig_vcf[i][1] in valid_pos:
-            sym_vcf.append(orig_vcf[i])
+    for i in iter(orig_vcf):
+        if i[0][0] != '#':
+            if i[0]+' '+i[1] in valid_pos:
+                sym_vcf.append(orig_vcf[i])
 
     # output
     write_file(sample_list[0:-4]+'.vcf', sym_vcf)
